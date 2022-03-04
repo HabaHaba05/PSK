@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<head>
+    <title>Libraries</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+</head>
+<body>
+    <ui:include src="/WEB-INF/common/navigation.xhtml" />
+
+    <h2 class="mt-4 h1 font-weight-bold text-center">Libraries</h2>
+    <hr/>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ui:repeat value="#{libraries.allLibraries}" var="lib">
+            <tr>
+                <th scope="row">#{lib.id}</th>
+                <td>#{lib.name}</td>
+                <td>#{lib.address}</td>
+                <td>
+                    <a class="btn-primary p-2" href="/libraries-and-books/libraries/booksInLibrary.xhtml?libraryId=#{lib.id}&amp;faces-redirect=true">View Books</a>
+                </td>
+            </tr>
+        </ui:repeat>
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <h:form class="d-flex w-100 row justify-content-around">
+        <div>
+            <label>Name: </label>
+            <h:inputText value="#{libraries.libraryToCreate.name}" required="true" />
+        </div>
+        <div>
+            <label>Address: </label>
+            <h:inputText value="#{libraries.libraryToCreate.address}" required="true" />
+        </div>
+        <h:commandButton class="btn-success" value="Add new Library" actionListener="#{libraries.createLibrary}" action="/libraries/index?faces-redirect=true"/>
+    </h:form>
+
+</body>
+</html>

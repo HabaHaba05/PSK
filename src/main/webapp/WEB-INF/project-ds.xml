@@ -1,0 +1,10 @@
+<datasources>
+    <datasource jndi-name="projectDS" pool-name="projectDS">
+        <driver>h2</driver>
+        <connection-url>jdbc:h2:~/h2database/ProjectDatabase;AUTO_SERVER=TRUE</connection-url>
+        <security>
+            <user-name>sa</user-name>
+            <password>sa</password>
+        </security>
+    </datasource>
+</datasources>

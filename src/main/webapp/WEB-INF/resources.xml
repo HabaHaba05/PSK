@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+    <Resource id="projectDS" type="DataSource">
+        JdbcDriver = org.h2.Driver
+        JdbcUrl = jdbc:h2:~/h2database/ProjectDatabase;AUTO_SERVER=TRUE;
+        UserName = sa
+        Password = sa
+        jmxEnabled = true
+    </Resource>
+</tomee>
