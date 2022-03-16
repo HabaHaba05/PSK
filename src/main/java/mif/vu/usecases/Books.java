@@ -4,6 +4,7 @@ import lombok.Setter;
 import lombok.Getter;
 import mif.vu.entities.Book;
 import mif.vu.persistance.DAO.BooksDAO;
+import mif.vu.services.BooksFilter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -13,6 +14,10 @@ import java.util.List;
 
 @Model
 public class Books {
+
+    @Inject
+    private BooksFilter booksFilter;
+
     @Inject
     private BooksDAO booksDAO;
 
@@ -26,6 +31,7 @@ public class Books {
     @PostConstruct
     public void init(){
         loadAllBooks();
+        booksFilter.filterBooks(this.allBooks);
     }
 
     @Transactional

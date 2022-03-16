@@ -15,4 +15,8 @@ public class Selectors {
     @Getter
     @Param
     private Integer libraryId;
+
+    @Getter
+    @Param
+    private String bookTitle;
 }

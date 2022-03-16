@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <style type="text/css">
+        .ui-selectlistbox-listcontainer{
+            overflow-y: scroll !important;
+            max-height: 150px;
+        }
+    </style>
+
+    <title>Books (MyBATIS)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+</h:head>
+<body>
+<ui:include src="/WEB-INF/common/navigation.xhtml"/>
+
+<h2 class="mt-4 h1 font-weight-bold text-center">Books</h2>
+<hr/>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Library</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ui:repeat value="#{booksMyBatis.allBooks}" var="book">
+        <tr>
+            <th scope="row">#{book.id}</th>
+            <td>#{book.title}</td>
+            <td>
+                <ui:repeat value="#{book.authors}" var="author">
+                    <a href="/libraries-and-books/authors/booksByAuthor.xhtml?authorId=#{author.id}">[#{author.name}]</a>
+                </ui:repeat>
+            </td>
+            <td>
+                <a href="/libraries-and-books/libraries/booksInLibrary.xhtml?libraryId=#{book.library.id}">#{book.library.name}</a>
+            </td>
+        </tr>
+    </ui:repeat>
+    </tbody>
+</table>
+
+<hr/>
+
+    <h:form class="d-flex w-100 row justify-content-around">
+        <div class="form-group w-50 border d-flex flex-column">
+            <label class="text-center font-weight-bold">Title</label>
+            <h:inputText value="#{booksMyBatis.bookToCreate.title}" required="true"/>
+            <br/>
+            <label class="text-center font-weight-bold">Authors</label>
+            <p:selectManyMenu value="#{booksMyBatis.authorsIdsOfNewBook}" converter="omnifaces.SelectItemsConverter"
+                              showCheckbox="true" required="true"
+                              filter="true" filterMatchMode="contains">
+                <f:selectItems value="#{authorsMyBatis.allAuthors}" var="author"
+                               itemLabel="#{author.name}" itemValue="#{author.id}"/>
+            </p:selectManyMenu>
+
+            <label class="text-center font-weight-bold">Library</label>
+            <p:selectOneMenu value="#{booksMyBatis.bookToCreate.libraryId}" converter="omnifaces.SelectItemsConverter"
+                             filter="true" filterMatchMode="contains">
+                <f:selectItems value="#{librariesMyBatis.allLibraries}" var="lib"
+                               itemLabel="#{lib.name}" itemValue="#{lib.id}"/>
+            </p:selectOneMenu>
+
+            <h:commandButton class="btn-success mt-4" value="Add new Book" actionListener="#{booksMyBatis.createBook}"
+                             action="/books/mybatis/index?faces-redirect=true"/>
+        </div>
+    </h:form>
+</body>
+</html>
