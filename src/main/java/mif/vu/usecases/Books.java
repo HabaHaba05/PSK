@@ -28,6 +28,10 @@ public class Books {
     @Setter
     private Book bookToCreate = new Book();
 
+    @Getter
+    @Setter
+    private Book bookToDelete = new Book();
+
     @PostConstruct
     public void init(){
         loadAllBooks();
@@ -38,6 +42,13 @@ public class Books {
     public void createBook(){
         booksDAO.create(bookToCreate);
     }
+
+    @Transactional
+    public void removeBook(int id){
+        booksDAO.remove(booksDAO.findById(id));
+    }
+
+
 
     private void loadAllBooks(){
         allBooks = booksDAO.getAll();

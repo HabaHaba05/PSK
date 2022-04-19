@@ -16,6 +16,10 @@ public class BooksDAO {
         return em.createNamedQuery("Book.findAll", Book.class).getResultList();
     }
 
+    public void remove(Book book) {
+        em.remove(book);
+    }
+
     public void create(Book book){
         this.em.persist(book);
     }

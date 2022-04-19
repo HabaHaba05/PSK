@@ -41,6 +41,7 @@
         <th scope="col">Title</th>
         <th scope="col">Author</th>
         <th scope="col">Library</th>
+        <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -55,6 +56,12 @@
             </td>
             <td>
                 <a href="/libraries-and-books/libraries/booksInLibrary.xhtml?libraryId=#{book.library.id}">#{book.library.name}</a>
+            </td>
+            <td>
+                <h:form>
+                    <h:commandButton class="btn-success mt-4" value="Remove" actionListener="#{books.removeBook(book.id)}"
+                                     action="/books/index?faces-redirect=true"/>
+                </h:form>
             </td>
         </tr>
     </ui:repeat>
