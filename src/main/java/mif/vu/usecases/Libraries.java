@@ -3,6 +3,7 @@ package mif.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import mif.vu.entities.Library;
+import mif.vu.persistance.DAO.ILibrariesDAO;
 import mif.vu.persistance.DAO.LibrariesDAO;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +15,7 @@ import java.util.List;
 @Model
 public class Libraries{
     @Inject
-    private LibrariesDAO librariesDAO;
+    private ILibrariesDAO librariesDAO;
 
     @Getter
     private List<Library> allLibraries;
@@ -28,7 +29,6 @@ public class Libraries{
         loadAllLibraries();
     }
 
-    @Transactional
     public void createLibrary(){
         librariesDAO.create(libraryToCreate);
     }

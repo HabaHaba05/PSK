@@ -1,5 +1,6 @@
 package mif.vu.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,10 +29,14 @@ public class Author implements Serializable {
 
     @NotNull
     @Column(name="NAME")
-    private String Name;
+    private String name;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    @JsonIgnore
+    private List<Book> books = new ArrayList<>();
 }

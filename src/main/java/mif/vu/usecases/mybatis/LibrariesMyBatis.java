@@ -23,6 +23,6 @@ public class LibrariesMyBatis {
     }
 
     private void loadALlLibs(){
-        allLibraries = libraryMapper.selectAll();
+        allLibraries = libraryMapper.getAll();
     }
 }
