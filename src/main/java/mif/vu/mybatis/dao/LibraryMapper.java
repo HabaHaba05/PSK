@@ -7,7 +7,7 @@ import org.mybatis.cdi.Mapper;
 import java.util.List;
 
 @Mapper
-public interface LibraryMapper {
+public interface LibraryMapper{
     @Select("SELECT ID, NAME, ADDRESS FROM PUBLIC.LIBRARY")
-    List<Library> selectAll();
+    List<Library> getAll();
 }

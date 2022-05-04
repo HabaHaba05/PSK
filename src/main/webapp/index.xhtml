@@ -10,5 +10,13 @@
     <ui:include src="/WEB-INF/common/navigation.xhtml" />
 
     <div class="mt-4 h1 font-weight-bold text-center">Libraries and Books and Authors</div>
+
+    <div>
+        <h:form>
+            <h:outputText value="#{asyncTask.getAsyncTaskStatus()}" />
+            <h:commandButton value="Generate random number?" disabled="#{asyncTask.isAsyncTaskRunning()}" action="#{asyncTask.generateRandomNumb()}">
+            </h:commandButton>
+        </h:form>
+    </div>
 </h:body>
 </html>

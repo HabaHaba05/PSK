@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,5 +45,5 @@ public class Book implements Serializable {
     )
     @NotNull
     @EqualsAndHashCode.Exclude
-    private Set<Author> authors;
+    private List<Author> authors = new ArrayList<>();
 }

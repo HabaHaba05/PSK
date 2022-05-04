@@ -36,4 +36,10 @@ public class Library implements Serializable {
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "library")
     private Set<Book> books;
+
+    public Library(Integer id, String name, String address){
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
 }
